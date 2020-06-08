@@ -72,7 +72,7 @@
                         <a href="{{ route('question.index') }}">Question</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
+                        <a href="{{ route('question.index') }}">Question</a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
