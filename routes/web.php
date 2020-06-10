@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('question', 'QuestionController')->except('show');
 
 Route::get('question/{slug}', 'QuestionController@show')->name('question.show');
+
+Route::post('/question/{question}/answer', 'AnswerController@store')->name('answer.store');
+
+Route::resource('question.answers', 'AnswerController')->only(['store', 'edit', 'destroy']);
