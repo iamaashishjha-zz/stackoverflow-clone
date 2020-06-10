@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Policies\QuestionPolicy;
-use App\Question;
+use App\Answer;
+use App\Policies\AnswerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Question::class => QuestionPolicy::class
+        Answer::class => AnswerPolicy::class,
     ];
 
     /**
@@ -34,6 +34,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-question', function($user, $question){
             return $user->id === $question->user_id;
         });
-        //
+
     }
 }
