@@ -19,7 +19,7 @@
                             <a href="" title="This answer is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a href="" title="Mark as favourite answer (Click again to undo)" class="vote-accepted mt-2 favorited">
+                            <a href="" title="Mark as favourite answer (Click again to undo)" class="{{ $answer->status }} mt-2 favorited">
                                 <i class="fas fa-check fa-2x"></i>
 
                             </a>
