@@ -19,10 +19,21 @@
                             <a href="" title="This answer is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a href="" title="Mark as favourite answer (Click again to undo)" class="{{ $answer->status }} mt-2 favorited">
-                                <i class="fas fa-check fa-2x"></i>
-
-                            </a>
+                            @can('accept', $answer)
+                                <a href="" title="Mark as favourite answer (Click again to undo)" class="{{ $answer->status }} mt-2 favorited"
+                                    onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit()">
+                                    <i class="fas fa-check fa-2x"></i>
+                                </a>
+                                <form action="{{ route('answers.accept', $answer->id) }}" method="post" id="accept-answer-{{ $answer->id }}" style="display: none;">
+                                    @csrf
+                                </form>
+                            @else
+                                @if($answer->is_best)
+                                    <a href="" title="This answer was marked as best answer." class="{{ $answer->status }} mt-2 favorited">
+                                        <i class="fas fa-check fa-2x"></i>
+                                    </a>
+                                @endif
+                            @endcan
                         </div>
                         <div class="media-body">
                             {!! $answer->body_html !!}
