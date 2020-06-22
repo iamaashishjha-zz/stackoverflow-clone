@@ -21,9 +21,9 @@
                             <div class="d-flex flex-column counters">
                                 <div class="vote">
                                     <strong>
-                                        {{ $question->votes }}
+                                        {{ $question->votes_count }}
                                     </strong>
-                                    {{ Str::plural('vote',$question->votes) }}
+                                    {{ Str::plural('vote',$question->votes_count) }}
                                 </div>
                                 <div class="status {{ $question->status }}">
                                     <strong>
@@ -35,7 +35,6 @@
                                     {{ $question->views ." ".  Str::plural('view',$question->views) }}
                                 </div>
                             </div>
-
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
