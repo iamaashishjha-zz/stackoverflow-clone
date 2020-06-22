@@ -93,11 +93,12 @@ class User extends Authenticatable
         if($voteAnswers->where('votable_id',$answer->id)->exists()){
             $voteAnswers->updateExistingPivot($answer, ['vote' => $vote]);
         }else{
-            $answer->load('votes');
+            $voteAnswers->attach($answer, ['vote' => $vote]);
+        }
+        $answer->load('votes');
             $downVotes =  (int) $answer->downVotes()->sum('vote');
             $upVotes = (int) $answer->upVotes()->sum('vote');
             $answer->votes_count = $upVotes + $downVotes;
-            $answer->save;
-        }
+            $answer->save();
     }
 }

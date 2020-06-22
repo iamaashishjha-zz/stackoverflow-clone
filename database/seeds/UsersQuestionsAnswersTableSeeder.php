@@ -1,5 +1,9 @@
 <?php
 
+use App\User;
+use App\Answer;
+use App\Question;
+
 use Illuminate\Database\Seeder;
 
 class UsersQuestionsAnswersTableSeeder extends Seeder
