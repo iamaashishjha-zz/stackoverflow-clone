@@ -31,22 +31,7 @@
                                 @csrf
                                 <input type="hidden" name="vote" value="-1">
                             </form>
-
-                            @can('accept', $answer)
-                                <a href="" title="Mark as favourite answer (Click again to undo)" class="{{ $answer->status }} mt-2 favorited"
-                                    onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit()">
-                                    <i class="fas fa-check fa-2x"></i>
-                                </a>
-                                <form action="{{ route('answers.accept', $answer->id) }}" method="post" id="accept-answer-{{ $answer->id }}" style="display: none;">
-                                    @csrf
-                                </form>
-                            @else
-                                @if($answer->is_best)
-                                    <a href="" title="This answer was marked as best answer." class="{{ $answer->status }} mt-2 favorited">
-                                        <i class="fas fa-check fa-2x"></i>
-                                    </a>
-                                @endif
-                            @endcan
+                            @include('shared._accept', ['model' => $answer])
                         </div>
                         <div class="media-body">
                             {!! $answer->body_html !!}
@@ -67,15 +52,7 @@
                                 </div>
                                 <div class="col-4"></div>
                                 <div class="col-4">
-                                    <span class="text-muted">
-                                        Answered {{ $answer->created_date }}
-                                    </span>
-                                    <div class="media mt-2">
-                                        <a href="{{ $answer->user->url }}" class="pr-2"><img src="{{ $answer->user->avatar }}" alt=""></a>
-                                        <div class="media-body mt-1">
-                                            <a href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
-                                        </div>
-                                    </div>
+                                    @include('shared._author', ['model' => $answer, 'label'=> 'Answered'])
                                 </div>
                             </div>
 
